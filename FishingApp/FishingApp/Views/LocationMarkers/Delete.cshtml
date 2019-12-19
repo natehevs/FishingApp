@@ -1,0 +1,104 @@
+﻿@model FishingApp.Models.LocationMarkers
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LocationMarkers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Enthusiast.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enthusiast.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gear.Rod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gear.Rod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechniqueModel.Technique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechniqueModel.Technique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTimeCaught)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTimeCaught)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaitUsed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaitUsed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LakeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LakeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AverageRating)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

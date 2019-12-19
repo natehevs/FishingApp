@@ -1,0 +1,87 @@
+﻿@model IEnumerable<FishingApp.Models.LocationMarkers>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Enthusiast.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gear.Rod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechniqueModel.Technique)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Species)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTimeCaught)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaitUsed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LakeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enthusiast.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gear.Rod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechniqueModel.Technique)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Species)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTimeCaught)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaitUsed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LakeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AverageRating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MarkerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MarkerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MarkerID })
+        </td>
+    </tr>
+}
+
+</table>

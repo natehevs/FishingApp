@@ -7,19 +7,21 @@ using System.Web;
 
 namespace FishingApp.Models
 {
-    public class RatingModel : LocationMarkers
+    public class RatingModel
     {
         [Key]
         [Display(Name = "Rating ID")]
         public int RatingID { get; set; }
 
-        [ForeignKey("Marker ID")]
+        [ForeignKey("LocationMarkers")]
         public int MarkerID { get; set; }
+        public LocationMarkers LocationMarkers { get; set; }
 
         [Display(Name = "Rating")]
         public int Rating { get; set; }
 
-        [ForeignKey("Enthusiast ID")]
-        public string EnthusiastID { get; set; }
+        [ForeignKey("Enthusiast")]
+        public int EnthusiastID { get; set; }
+        public Enthusiast Enthusiast { get; set; }
     }
 }

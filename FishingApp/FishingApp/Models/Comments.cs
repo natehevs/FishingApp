@@ -13,8 +13,9 @@ namespace FishingApp.Models
         [Display(Name = "Comment ID")]
         public int CommentID { get; set; }
 
-        [ForeignKey("Marker ID")]
+        [ForeignKey("Marker")]
         public int MarkerID { get; set; }
+        public LocationMarkers LocationMarkers { get; set; }
 
         [Display(Name = "Comment")]
         public string Comment { get; set; }

@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using FishingApp.Models;
+
+namespace FishingApp.Controllers
+{
+    public class LocationMarkersController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: LocationMarkers
+        public ActionResult Index()
+        {
+            var locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.Gear).Include(l => l.TechniqueModel);
+            return View(locationMarkers.ToList());
+        }
+
+        // GET: LocationMarkers/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
+            if (locationMarkers == null)
+            {
+                return HttpNotFound();
+            }
+            return View(locationMarkers);
+        }
+
+        // GET: LocationMarkers/Create
+        public ActionResult Create()
+        {
+            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username");
+            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod");
+            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique");
+            return View();
+        }
+
+        // POST: LocationMarkers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,GearID,LakeName,TechniqueID,Latitude,Longitude,AverageRating")] LocationMarkers locationMarkers)
+        {
+            if (ModelState.IsValid)
+            {
+                db.LocationMarkers.Add(locationMarkers);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
+            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
+            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
+            return View(locationMarkers);
+        }
+
+        // GET: LocationMarkers/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
+            if (locationMarkers == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
+            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
+            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
+            return View(locationMarkers);
+        }
+
+        // POST: LocationMarkers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,GearID,LakeName,TechniqueID,Latitude,Longitude,AverageRating")] LocationMarkers locationMarkers)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(locationMarkers).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
+            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
+            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
+            return View(locationMarkers);
+        }
+
+        // GET: LocationMarkers/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
+            if (locationMarkers == null)
+            {
+                return HttpNotFound();
+            }
+            return View(locationMarkers);
+        }
+
+        // POST: LocationMarkers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
+            db.LocationMarkers.Remove(locationMarkers);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
