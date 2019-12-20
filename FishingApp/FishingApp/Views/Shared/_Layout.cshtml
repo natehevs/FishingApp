@@ -106,8 +106,8 @@
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: { lat: -25.363882, lng: 131.044922 }
+                zoom: 13,
+                center: { lat: 43.101306, lng: -88.382168 }
             });
 
             map.addListener('click', function (e) {
@@ -117,10 +117,15 @@
 
         function placeMarkerAndPanTo(latLng, map) {
             var marker = new google.maps.Marker({
-                position: latLng,
+                url: 'https://localhost:44373/LocationMarkers/Create',
+                title: 'Create Location',
+                position: latLng,       
                 map: map
             });
-            map.panTo(latLng);
+            
+            marker.addListener('click', function () {
+                window.location.href = marker.url;
+            });
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIni_ta1ZP0Guay2wh3t99DEhEAq3bkT0&callback=initMap"
