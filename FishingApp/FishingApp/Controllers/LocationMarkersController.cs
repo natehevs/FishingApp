@@ -29,6 +29,8 @@ namespace FishingApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
+            locationMarkers.AverageRating = AverageRating(locationMarkers);
+            db.SaveChanges();
             if (locationMarkers == null)
             {
                 return HttpNotFound();
@@ -135,6 +137,21 @@ namespace FishingApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public double AverageRating(LocationMarkers locationMarkers)
+        {
+            List<RatingController> ratingsObj = new List<RatingController>();
+            List<string> ratings = new List<string>();
+            List<int> integers = new List<int>();
+            //ratingsObj = db.RatingController.Where(r => r.Rating > 0).Where(l => l.LocationId == LocationMarkers.LocationId).ToList();
+            //foreach (RatingController rating in ratingsObj)
+            //{
+            //    Convert.ToInt32(rating.Rating);
+            //    integers.Add(rating.Rating);
+            //}
+            double averageRating = integers.Average();
+            return averageRating;
         }
     }
 }
