@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishingApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,12 @@ namespace FishingApp.Controllers
 {
     public class RatingController : Controller
     {
-        // GET: Rating
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: RatingsCheckIns
         public ActionResult Index()
         {
+            var ratings = db.RatingModel.Include(r => r.DarkSkyLocation).Include(r => r.Observer);
             return View();
         }
 
@@ -23,23 +27,29 @@ namespace FishingApp.Controllers
         // GET: Rating/Create
         public ActionResult Create()
         {
+            ViewBag.Marker.ID = new SelectList(db.LocationMarkers, "MarkerID", "Name");
+            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastId", "FirstName");
             return View();
         }
 
         // POST: Rating/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Rating")] RatingModel ratingModel, Enthusiast enthusiast, LocationMarkers locationMarkers)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                RatingModel ratings = new RatingModel();
+                ratings.MarkerID = locationMarkers.MarkerID;
+                ratings.EnthusiastID = enthusiast.EnthusiastID;
+                ratings.Rating = ratingModel.Rating;
+                db.RatingModel.Add(ratings);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.LocationId = new SelectList(db.LocationMarkers, "MarkerID", ratingModel.MarkerID);
+            ViewBag.UserId = new SelectList(db.Enthusiasts, "UserId", "FirstName", ratingModel.EnthusiastID);
+            return View(ratingModel);
         }
 
         // GET: Rating/Edit/5

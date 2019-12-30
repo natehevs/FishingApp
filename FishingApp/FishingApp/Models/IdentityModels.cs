@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -37,5 +38,7 @@ namespace FishingApp.Models
         public System.Data.Entity.DbSet<FishingApp.Models.Gear> Gears { get; set; }
 
         public System.Data.Entity.DbSet<FishingApp.Models.TechniqueModel> TechniqueModels { get; set; }
+        public IEnumerable<object> RatingController { get; internal set; }
+        public object RatingModel { get; internal set; }
     }
 }
