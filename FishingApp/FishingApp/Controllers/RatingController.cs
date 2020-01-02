@@ -14,7 +14,7 @@ namespace FishingApp.Controllers
         // GET: RatingsCheckIns
         public ActionResult Index()
         {
-            var ratings = db.RatingModel.Include(r => r.DarkSkyLocation).Include(r => r.Observer);
+            //var ratings = db.RatingModel.Include(r => r.DarkSkyLocation).Include(r => r.Observer);
             return View();
         }
 
@@ -37,18 +37,18 @@ namespace FishingApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Rating")] RatingModel ratingModel, Enthusiast enthusiast, LocationMarkers locationMarkers)
         {
-            if (ModelState.IsValid)
-            {
-                RatingModel ratings = new RatingModel();
-                ratings.MarkerID = locationMarkers.MarkerID;
-                ratings.EnthusiastID = enthusiast.EnthusiastID;
-                ratings.Rating = ratingModel.Rating;
-                db.RatingModel.Add(ratings);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Home");
-            }
-            ViewBag.LocationId = new SelectList(db.LocationMarkers, "MarkerID", ratingModel.MarkerID);
-            ViewBag.UserId = new SelectList(db.Enthusiasts, "UserId", "FirstName", ratingModel.EnthusiastID);
+            //if (ModelState.IsValid)
+            //{
+            //    RatingModel ratings = new RatingModel();
+            //    ratings.MarkerID = locationMarkers.MarkerID;
+            //    ratings.EnthusiastID = enthusiast.EnthusiastID;
+            //    ratings.Rating = ratingModel.Rating;
+            //    db.RatingModel.Add(ratings);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //ViewBag.LocationId = new SelectList(db.LocationMarkers, "MarkerID", ratingModel.MarkerID);
+            //ViewBag.UserId = new SelectList(db.Enthusiasts, "UserId", "FirstName", ratingModel.EnthusiastID);
             return View(ratingModel);
         }
 

@@ -58,7 +58,7 @@ namespace FishingApp.Controllers
             {
                 db.LocationMarkers.Add(locationMarkers);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
