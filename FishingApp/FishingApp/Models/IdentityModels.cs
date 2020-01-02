@@ -35,8 +35,6 @@ namespace FishingApp.Models
 
         public System.Data.Entity.DbSet<FishingApp.Models.Enthusiast> Enthusiasts { get; set; }
 
-        public System.Data.Entity.DbSet<FishingApp.Models.Gear> Gears { get; set; }
-
         public System.Data.Entity.DbSet<FishingApp.Models.TechniqueModel> TechniqueModels { get; set; }
         public IEnumerable<object> RatingController { get; internal set; }
         public object RatingModel { get; internal set; }

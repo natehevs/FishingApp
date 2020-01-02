@@ -180,15 +180,18 @@
     <Compile Include="Migrations\201912201526484_InitialCreate.Designer.cs">
       <DependentUpon>201912201526484_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001021516056_Init.cs" />
-    <Compile Include="Migrations\202001021516056_Init.Designer.cs">
-      <DependentUpon>202001021516056_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202001021540102_test.cs" />
+    <Compile Include="Migrations\202001021540102_test.Designer.cs">
+      <DependentUpon>202001021540102_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001021958531_add-migration TechniqueAdded.cs" />
+    <Compile Include="Migrations\202001021958531_add-migration TechniqueAdded.Designer.cs">
+      <DependentUpon>202001021958531_add-migration TechniqueAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Enthusiast.cs" />
-    <Compile Include="Models\Gear.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocationMarkers.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -263,6 +266,7 @@
     <Content Include="Views\Enthusiasts\Details.cshtml" />
     <Content Include="Views\Enthusiasts\Edit.cshtml" />
     <Content Include="Views\Enthusiasts\Index.cshtml" />
+    <Content Include="Views\Technique\Technique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,8 +289,11 @@
     <EmbeddedResource Include="Migrations\201912201526484_InitialCreate.resx">
       <DependentUpon>201912201526484_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001021516056_Init.resx">
-      <DependentUpon>202001021516056_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001021540102_test.resx">
+      <DependentUpon>202001021540102_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001021958531_add-migration TechniqueAdded.resx">
+      <DependentUpon>202001021958531_add-migration TechniqueAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

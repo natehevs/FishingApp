@@ -7,13 +7,13 @@ namespace FishingApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class addmigrationTechniqueAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addmigrationTechniqueAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001021516056_Init"; }
+            get { return "202001021958531_add-migration TechniqueAdded"; }
         }
         
         string IMigrationMetadata.Source

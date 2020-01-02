@@ -17,7 +17,7 @@ namespace FishingApp.Controllers
         // GET: LocationMarkers
         public ActionResult Index()
         {
-            var locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.Gear).Include(l => l.TechniqueModel);
+            var locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.TechniqueModel);
             return View(locationMarkers.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace FishingApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
-            locationMarkers.AverageRating = AverageRating(locationMarkers);
+            locationMarkers.Rating = AverageRating(locationMarkers);
             db.SaveChanges();
             if (locationMarkers == null)
             {
@@ -41,10 +41,9 @@ namespace FishingApp.Controllers
         // GET: LocationMarkers/Create
         public ActionResult Create()
         {
-            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username");
-            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod");
-            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique");
-            return View();
+            LocationMarkers locationMarkers = new LocationMarkers();
+            locationMarkers.Techniques = new SelectList(db.TechniqueModels.ToList(), "TechniqueID", "Technique");
+            return View(locationMarkers);
         }
 
         // POST: LocationMarkers/Create
@@ -52,7 +51,7 @@ namespace FishingApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,GearID,LakeName,TechniqueID,Latitude,Longitude,AverageRating")] LocationMarkers locationMarkers)
+        public ActionResult Create([Bind(Include = "MarkerID,Species,DateTimeCaught,BaitUsed,GearID,LakeName,TechniqueID,Rating")] LocationMarkers locationMarkers)
         {
             if (ModelState.IsValid)
             {
@@ -60,10 +59,6 @@ namespace FishingApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-
-            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
-            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
-            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
             return View(locationMarkers);
         }
 
@@ -79,9 +74,6 @@ namespace FishingApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
-            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
-            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
             return View(locationMarkers);
         }
 
@@ -98,9 +90,6 @@ namespace FishingApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EnthusiastID = new SelectList(db.Enthusiasts, "EnthusiastID", "Username", locationMarkers.EnthusiastID);
-            ViewBag.GearID = new SelectList(db.Gears, "GearID", "Rod", locationMarkers.GearID);
-            ViewBag.TechniqueID = new SelectList(db.TechniqueModels, "TechniqueID", "Technique", locationMarkers.TechniqueID);
             return View(locationMarkers);
         }
 
