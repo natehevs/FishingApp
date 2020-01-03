@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FishingApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FishingApp.Controllers
 {
@@ -51,13 +52,16 @@ namespace FishingApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MarkerID,Species,DateTimeCaught,BaitUsed,GearID,LakeName,TechniqueID,Rating")] LocationMarkers locationMarkers)
+        public ActionResult Create([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,RodUsed,ReelUsed,LineUsed,LakeName,TechniqueId,Rating")] LocationMarkers locationMarkers)
         {
             if (ModelState.IsValid)
             {
+                var loggedInId = User.Identity.GetUserId();
+                var loggedInEnthusiast = db.Enthusiasts.Where(e => e.ApplicationId == loggedInId).SingleOrDefault();
+                locationMarkers.EnthusiastID = loggedInEnthusiast.EnthusiastID;
                 db.LocationMarkers.Add(locationMarkers);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "LocationMarkers");
             }
             return View(locationMarkers);
         }

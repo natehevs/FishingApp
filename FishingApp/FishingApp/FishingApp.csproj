@@ -188,6 +188,14 @@
     <Compile Include="Migrations\202001021958531_add-migration TechniqueAdded.Designer.cs">
       <DependentUpon>202001021958531_add-migration TechniqueAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001031404405_fixingerrors.cs" />
+    <Compile Include="Migrations\202001031404405_fixingerrors.Designer.cs">
+      <DependentUpon>202001031404405_fixingerrors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001031521016_applicationuseridadded.cs" />
+    <Compile Include="Migrations\202001031521016_applicationuseridadded.Designer.cs">
+      <DependentUpon>202001031521016_applicationuseridadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -266,7 +274,6 @@
     <Content Include="Views\Enthusiasts\Details.cshtml" />
     <Content Include="Views\Enthusiasts\Edit.cshtml" />
     <Content Include="Views\Enthusiasts\Index.cshtml" />
-    <Content Include="Views\Technique\Technique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001021958531_add-migration TechniqueAdded.resx">
       <DependentUpon>202001021958531_add-migration TechniqueAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001031404405_fixingerrors.resx">
+      <DependentUpon>202001031404405_fixingerrors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001031521016_applicationuseridadded.resx">
+      <DependentUpon>202001031521016_applicationuseridadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

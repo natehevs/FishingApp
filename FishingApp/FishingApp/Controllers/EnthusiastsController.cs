@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FishingApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FishingApp.Controllers
 {
@@ -50,6 +51,7 @@ namespace FishingApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                enthusiast.ApplicationId = User.Identity.GetUserId();
                 db.Enthusiasts.Add(enthusiast);
                 db.SaveChanges();
                 return RedirectToAction("Index");
