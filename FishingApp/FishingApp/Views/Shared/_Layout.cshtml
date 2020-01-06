@@ -113,13 +113,14 @@
             map.addListener('click', function (e) {
                 placeMarkerAndPanTo(e.latLng, map);
             });
+            marker.setMapt(map);
         }
 
-        function placeMarkerAndPanTo(latLng, map) {
+        function placeMarkerAndPanTo(location, map) {
             var marker = new google.maps.Marker({
                 url: 'https://localhost:44373/LocationMarkers/Create',
                 title: 'Create Location',
-                position: latLng,       
+                position: location,       
                 map: map
             });
             
