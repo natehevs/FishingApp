@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202001031521016_applicationuseridadded.Designer.cs">
       <DependentUpon>202001031521016_applicationuseridadded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001061533295_Latlongadded.cs" />
+    <Compile Include="Migrations\202001061533295_Latlongadded.Designer.cs">
+      <DependentUpon>202001061533295_Latlongadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001031521016_applicationuseridadded.resx">
       <DependentUpon>202001031521016_applicationuseridadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001061533295_Latlongadded.resx">
+      <DependentUpon>202001061533295_Latlongadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

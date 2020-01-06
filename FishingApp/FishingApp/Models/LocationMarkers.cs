@@ -43,6 +43,14 @@ namespace FishingApp.Models
         public int TechniqueID { get; set; }
         public TechniqueModel TechniqueModel { get; set; }
 
+        [Display(Name = "Latitude")]
+
+        public double Latitude { get; set; }
+
+        [Display(Name = "Longitude")]
+
+        public double Longitude { get; set; }
+
         [Display(Name = "Rating")]
         public double Rating { get; set; }
 

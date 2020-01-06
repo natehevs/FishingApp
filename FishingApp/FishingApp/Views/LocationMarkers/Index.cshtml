@@ -44,44 +44,150 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Enthusiast.Username)
-        </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.RodUsed)
-        </th>
-        <th>
-            @Html.DisplayFor(modelItem => item.ReelUsed)
-        </th>
-        <th>
-            @Html.DisplayFor(modelItem => item.LineUsed)
-        </th>
-        <td>
-            @Html.DisplayFor(modelItem => item.TechniqueModel.Technique)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Species)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTimeCaught)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaitUsed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LakeName)
-        </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MarkerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MarkerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MarkerID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enthusiast.Username)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.RodUsed)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.ReelUsed)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.LineUsed)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechniqueModel.Technique)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeCaught)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaitUsed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LakeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MarkerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MarkerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MarkerID })
+            </td>
+        </tr>
+    }
 
 </table>
+<style>
+    /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* The popup bubble styling. */
+    .popup-bubble {
+        /* Position the bubble centred-above its parent. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -100%);
+        /* Style the bubble. */
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        font-family: sans-serif;
+        overflow-y: auto;
+        max-height: 60px;
+        box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+    }
+    /* The parent of the bubble. A zero-height div at the top of the tip. */
+    .popup-bubble-anchor {
+        /* Position the div a fixed distance above the tip. */
+        position: absolute;
+        width: 100%;
+        bottom: /* TIP_HEIGHT= */ 8px;
+        left: 0;
+    }
+        /* This element draws the tip. */
+        .popup-bubble-anchor::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* Center the tip horizontally. */
+            transform: translate(-50%, 0);
+            /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+            width: 0;
+            height: 0;
+            /* The tip is 8px high, and 12px wide. */
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: /* TIP_HEIGHT= */ 8px solid white;
+        }
+    /* JavaScript will position this div at the bottom of the popup tip. */
+    .popup-container {
+        cursor: auto;
+        height: 0;
+        position: absolute;
+        /* The max width of the info window. */
+        width: 200px;
+    }
+</style>
+<div id="map"></div>
+
+<script>
+        function initMap() {
+            var myLatLng = { lat: 43.101306, lng: -88.382168 }
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: myLatLng
+            });
+
+            @foreach (var item in Model) {
+                <text>
+                    var marker = new google.maps.Marker({                        
+                        map: map
+                        position: { lat: @item.Latitude, lng: @item.Longitude },
+                        title: 'Click for Info'
+                    });
+                </text>
+             }
+
+            //map.addListener('click', function (e) {
+            //    placeMarkerAndPanTo(e.latLng, map);
+            //});
+        }
+
+        //function placeMarkerAndPanTo(latLng, map) {
+        //    var marker = new google.maps.Marker({
+        //        url: 'https://localhost:44373/LocationMarkers/Create',
+        //        title: 'Create Location',
+        //        position: latLng,
+        //        map: map,
+        //        draggable: true
+        //    });
+
+        //    marker.addListener('click', function () {
+        //        window.location.href = marker.url;
+        //    });
+        //    markersArray.push(marker);
+        //    map.panTo(location);
+        //}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIni_ta1ZP0Guay2wh3t99DEhEAq3bkT0&callback=initMap"
+        type="text/javascript"></script>

@@ -105,29 +105,41 @@
 
     <script>
         function initMap() {
+            var myLatLng = { lat: 43.101306, lng: -88.382168 }
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
-                center: { lat: 43.101306, lng: -88.382168 }
+                center: myLatLng
             });
 
-            map.addListener('click', function (e) {
-                placeMarkerAndPanTo(e.latLng, map);
-            });
-            marker.setMapt(map);
+            @foreach (var item in Model) {
+                <text>
+                    var marker = new google.maps.Marker({                        
+                        map: map
+                        position: { lat: @item.Latitude, lng: @item.Longitude },
+                        title: 'Click for Info'
+                    });
+                </text>
+             }
+
+            //map.addListener('click', function (e) {
+            //    placeMarkerAndPanTo(e.latLng, map);
+            //});
         }
 
-        function placeMarkerAndPanTo(location, map) {
-            var marker = new google.maps.Marker({
-                url: 'https://localhost:44373/LocationMarkers/Create',
-                title: 'Create Location',
-                position: location,       
-                map: map
-            });
+        //function placeMarkerAndPanTo(location, map) {
+        //    var marker = new google.maps.Marker({
+        //        url: 'https://localhost:44373/LocationMarkers/Create',
+        //        title: 'Create Location',
+        //        position: location,       
+        //        map: map
+        //    });
             
-            marker.addListener('click', function () {
-                window.location.href = marker.url;
-            });
-        }
+        //    marker.addListener('click', function () {
+        //        window.location.href = marker.url;
+        //    });
+
+        //}
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIni_ta1ZP0Guay2wh3t99DEhEAq3bkT0&callback=initMap"
             type="text/javascript"></script>

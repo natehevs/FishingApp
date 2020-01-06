@@ -52,7 +52,7 @@ namespace FishingApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,RodUsed,ReelUsed,LineUsed,LakeName,TechniqueId,Rating")] LocationMarkers locationMarkers)
+        public ActionResult Create([Bind(Include = "MarkerID,EnthusiastID,Species,DateTimeCaught,BaitUsed,RodUsed,ReelUsed,LineUsed,LakeName,TechniqueId,Latitude,Longitude,Rating")] LocationMarkers locationMarkers)
         {
             if (ModelState.IsValid)
             {
