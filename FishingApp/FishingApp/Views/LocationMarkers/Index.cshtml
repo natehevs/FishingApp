@@ -6,6 +6,7 @@
 
 <h2>Index</h2>
 
+<div class="floater">
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,85 +30,88 @@
 <p>
     @Html.ActionLink("Jigging", "Filter", "LocationMarkers", new { SelectByTechnique = "Jigging" }, null)
 </p>
+</div>
 
-<table class="table">
+    <div id="container" style="width: 100%;">
+    <table class="table">
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Enthusiast.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RodUsed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReelUsed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LineUsed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TechniqueModel.Technique)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Species)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTimeCaught)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BaitUsed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LakeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Enthusiast.Username)
-            </td>
             <th>
-                @Html.DisplayFor(modelItem => item.RodUsed)
+                @Html.DisplayNameFor(model => model.Enthusiast.Username)
             </th>
             <th>
-                @Html.DisplayFor(modelItem => item.ReelUsed)
+                @Html.DisplayNameFor(model => model.RodUsed)
             </th>
             <th>
-                @Html.DisplayFor(modelItem => item.LineUsed)
+                @Html.DisplayNameFor(model => model.ReelUsed)
             </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.TechniqueModel.Technique)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Species)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTimeCaught)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BaitUsed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LakeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MarkerID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MarkerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MarkerID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.LineUsed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TechniqueModel.Technique)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeCaught)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaitUsed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LakeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enthusiast.Username)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.RodUsed)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.ReelUsed)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.LineUsed)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TechniqueModel.Technique)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Species)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimeCaught)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BaitUsed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LakeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MarkerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MarkerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MarkerID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 <div id="map" style="height:500px"></div>
 
 <script>

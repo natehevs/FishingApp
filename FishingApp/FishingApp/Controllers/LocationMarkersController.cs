@@ -18,11 +18,6 @@ namespace FishingApp.Controllers
         // GET: LocationMarkers
         public ActionResult Index(string searchString)
         {
-            //ViewData["CurrentFilter"] = seachString;
-            //if(!String.IsNullOrEmpty(searchString))
-            //{
-            //    locationMarkers = locationMarkers.Where(s => s.Rating.Contains(searchString));
-            //}
             List<LocationMarkers> locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.TechniqueModel).ToList();
             return View(locationMarkers.ToList());
         }
