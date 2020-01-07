@@ -31,6 +31,8 @@ namespace FishingApp.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<FishingApp.Models.Comments> Comment { get; set; }
+
         public System.Data.Entity.DbSet<FishingApp.Models.LocationMarkers> LocationMarkers { get; set; }
 
         public System.Data.Entity.DbSet<FishingApp.Models.Enthusiast> Enthusiasts { get; set; }

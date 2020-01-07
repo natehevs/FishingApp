@@ -16,9 +16,14 @@ namespace FishingApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: LocationMarkers
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.TechniqueModel);
+            //ViewData["CurrentFilter"] = seachString;
+            //if(!String.IsNullOrEmpty(searchString))
+            //{
+            //    locationMarkers = locationMarkers.Where(s => s.Rating.Contains(searchString));
+            //}
+            List<LocationMarkers> locationMarkers = db.LocationMarkers.Include(l => l.Enthusiast).Include(l => l.TechniqueModel).ToList();
             return View(locationMarkers.ToList());
         }
 
@@ -30,7 +35,6 @@ namespace FishingApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             LocationMarkers locationMarkers = db.LocationMarkers.Find(id);
-            locationMarkers.Rating = AverageRating(locationMarkers);
             db.SaveChanges();
             if (locationMarkers == null)
             {
@@ -132,19 +136,10 @@ namespace FishingApp.Controllers
             base.Dispose(disposing);
         }
 
-        public double AverageRating(LocationMarkers locationMarkers)
+        public ActionResult Filter(string SelectByTechnique)
         {
-            List<RatingController> ratingsObj = new List<RatingController>();
-            List<string> ratings = new List<string>();
-            List<int> integers = new List<int>();
-            //ratingsObj = db.RatingController.Where(r => r.Rating > 0).Where(l => l.LocationId == LocationMarkers.LocationId).ToList();
-            //foreach (RatingController rating in ratingsObj)
-            //{
-            //    Convert.ToInt32(rating.Rating);
-            //    integers.Add(rating.Rating);
-            //}
-            double averageRating = integers.Average();
-            return averageRating;
+            var locationMarkers = db.LocationMarkers.Where(d => d.TechniqueModel.Technique == SelectByTechnique).ToList();
+            return View(locationMarkers);
         }
     }
 }

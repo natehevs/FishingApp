@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\EnthusiastsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationMarkersController.cs" />
@@ -199,6 +200,18 @@
     <Compile Include="Migrations\202001061533295_Latlongadded.cs" />
     <Compile Include="Migrations\202001061533295_Latlongadded.Designer.cs">
       <DependentUpon>202001061533295_Latlongadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071409304_latlongstring.cs" />
+    <Compile Include="Migrations\202001071409304_latlongstring.Designer.cs">
+      <DependentUpon>202001071409304_latlongstring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071707007_comments.cs" />
+    <Compile Include="Migrations\202001071707007_comments.Designer.cs">
+      <DependentUpon>202001071707007_comments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071923387_filtering.cs" />
+    <Compile Include="Migrations\202001071923387_filtering.Designer.cs">
+      <DependentUpon>202001071923387_filtering.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -278,6 +291,12 @@
     <Content Include="Views\Enthusiasts\Details.cshtml" />
     <Content Include="Views\Enthusiasts\Edit.cshtml" />
     <Content Include="Views\Enthusiasts\Index.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\LocationMarkers\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,6 +333,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001061533295_Latlongadded.resx">
       <DependentUpon>202001061533295_Latlongadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071409304_latlongstring.resx">
+      <DependentUpon>202001071409304_latlongstring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071707007_comments.resx">
+      <DependentUpon>202001071707007_comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071923387_filtering.resx">
+      <DependentUpon>202001071923387_filtering.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

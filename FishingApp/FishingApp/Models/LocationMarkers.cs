@@ -45,14 +45,14 @@ namespace FishingApp.Models
 
         [Display(Name = "Latitude")]
 
-        public double Latitude { get; set; }
+        public string Latitude { get; set; }
 
         [Display(Name = "Longitude")]
 
-        public double Longitude { get; set; }
+        public string Longitude { get; set; }
 
         [Display(Name = "Rating")]
-        public double Rating { get; set; }
+        public int Rating { get; set; }
 
         [NotMapped]
         public SelectList Techniques { get; set; }
